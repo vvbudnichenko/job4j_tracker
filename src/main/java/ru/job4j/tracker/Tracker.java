@@ -41,11 +41,18 @@ public class Tracker {
     }
 
     public boolean replace(int id, Item item) {
-        int index = indexOf(id);
-        if (index != -1) {
-            item.setId(id);
-            items[index] = item;
-            return true;
+        if (id < 0) {
+            System.out.println("Please enter positive number. Try again. ");
+        } else {
+            int index = indexOf(id);
+            if (index != -1) {
+                item.setId(id);
+                items[index] = item;
+                System.out.println("Item with id " + id + " was replaced successfully.");
+                return true;
+            } else {
+                System.out.println("You try to replace non-existing item. Try again. ");
+            }
         }
         return false;
     }
@@ -63,10 +70,17 @@ public class Tracker {
 
     public void delete(int id) {
         int index = indexOf(id);
-        if (index != -1) {
-            System.arraycopy(items, index + 1, items, index, size - index - 1);
-            items[size - 1] = null;
-            size--;
+        if (id < 0) {
+            System.out.println("Please enter positive number.");
+        } else {
+            if (index != -1) {
+                System.arraycopy(items, index + 1, items, index, size - index - 1);
+                items[size - 1] = null;
+                size--;
+                System.out.println("Item with id " + id + " was deleted successfully.");
+            } else {
+                System.out.println("You try to delete non-existing item.");
+            }
         }
     }
 }
