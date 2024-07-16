@@ -19,40 +19,27 @@ public class Tracker {
     }
 
     public Item[] findAll() {
-        Item[] result = new Item[items.length];
-        int size = 0;
-        for (Item temp : items) {
-            if (temp != null) {
-                result[size++] = temp;
-            }
-        }
-        return Arrays.copyOf(result, size);
+        return Arrays.copyOf(items, size);
     }
 
     public Item[] findByName(String key) {
-        Item[] result = findAll();
-        int size = 0;
+        Item[] result = Arrays.copyOf(items, size);
+        int count = 0;
         for (Item temp : result) {
             if (key.equals(temp.getName())) {
-                result[size++] = temp;
+                result[count++] = temp;
             }
         }
-        return Arrays.copyOf(result, size);
+        return Arrays.copyOf(result, count);
     }
 
     public boolean replace(int id, Item item) {
-        if (id < 0) {
-            System.out.println("Please enter positive number. Try again. ");
-        } else {
-            int index = indexOf(id);
-            if (index != -1) {
-                item.setId(id);
-                items[index] = item;
-                System.out.println("Item with id " + id + " was replaced successfully.");
-                return true;
-            } else {
-                System.out.println("You try to replace non-existing item. Try again. ");
-            }
+        int index = indexOf(id);
+        boolean result = index != -1;
+        if (result) {
+            item.setId(id);
+            items[index] = item;
+            return true;
         }
         return false;
     }
@@ -70,17 +57,12 @@ public class Tracker {
 
     public void delete(int id) {
         int index = indexOf(id);
-        if (id < 0) {
-            System.out.println("Please enter positive number.");
-        } else {
-            if (index != -1) {
-                System.arraycopy(items, index + 1, items, index, size - index - 1);
-                items[size - 1] = null;
-                size--;
-                System.out.println("Item with id " + id + " was deleted successfully.");
-            } else {
-                System.out.println("You try to delete non-existing item.");
-            }
+        boolean result = index != -1;
+        if (result) {
+            System.arraycopy(items, index + 1, items, index, size - index - 1);
+            items[size - 1] = null;
+            size--;
+            System.out.println("Item with id " + id + " was deleted successfully.");
         }
     }
 }
