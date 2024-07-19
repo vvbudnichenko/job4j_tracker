@@ -12,12 +12,8 @@ public class Matches {
             String player = turn ? "Первый игрок" : "Второй игрок";
             System.out.println(player + " введите число от 1 до 3:");
             int matches = Integer.parseInt(input.nextLine());
-            while (matches > 3 || matches < 1 || count < matches) {
-                if (matches > 3 || matches < 1) {
-                    System.out.println(player + ", остаток равен: " + count + ", еще раз введите число от 1 до 3:");
-                } else {
-                    System.out.println(player + ", остаток равен: " + count + ", введите число меньшее и равное остатку:");
-                }
+            while ((matches > 3 || matches < 1) || count < matches) {
+                System.out.println(player + ", остаток равен: " + count + ", еще раз введите число от 1 до 3:");
                 matches = Integer.parseInt(input.nextLine());
             }
             turn = !turn;
