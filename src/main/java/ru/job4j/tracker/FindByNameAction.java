@@ -15,7 +15,7 @@ public class FindByNameAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        output.println("=== Вывод заявки имени === ");
+        output.println("=== Вывод заявки имени ===");
         String name = input.askStr("Введите имя: ");
         Item[] items = tracker.findByName(name);
         if (items.length > 0) {
