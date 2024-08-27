@@ -18,7 +18,7 @@ class FactorialTest {
     }
 
     @Test
-    void whenNumerisZeroThanOne() {
+    void whenNumberIsZeroThanOne() {
         int result = new Factorial().calc(0);
         int expected = 1;
         assertThat(result).isEqualTo(expected);
