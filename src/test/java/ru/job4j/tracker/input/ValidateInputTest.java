@@ -23,11 +23,11 @@ class ValidateInputTest {
     void whenInvalidInputFive() {
         Output output = new StubOutput();
         Input in = new MockInput(
-                new String[]{"7"}
+                new String[]{"8"}
         );
         ValidateInput input = new ValidateInput(output, in);
         int selected = input.askInt("Enter menu");
-        assertThat(selected).isEqualTo(7);
+        assertThat(selected).isEqualTo(8);
     }
 
     @Test
