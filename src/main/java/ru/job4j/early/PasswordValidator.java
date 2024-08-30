@@ -18,13 +18,6 @@ public class PasswordValidator {
             throw new IllegalArgumentException(LENGTH_ERROR_MESSAGE);
         }
 
-        String lowerCasePassword = password.toLowerCase();
-        for (String forbiddenWords : FORBIDDEN) {
-            if (lowerCasePassword.contains(forbiddenWords)) {
-                throw new IllegalArgumentException(FORBIDDEN_MESSAGE);
-            }
-        }
-
         boolean hasUpCase = false;
         boolean hasLowCase = false;
         boolean hasDigit = false;
@@ -38,13 +31,21 @@ public class PasswordValidator {
                 hasLowCase = true;
             } else if (Character.isDigit(symbol)) {
                 hasDigit = true;
-            } else {
+            } else if (!Character.isLetterOrDigit(symbol)) {
                 hasSpecial = true;
             }
             if (hasUpCase && hasLowCase && hasDigit && hasSpecial) {
                 break;
             }
         }
+
+        String lowerCasePassword = password.toLowerCase();
+        for (String forbiddenWords : FORBIDDEN) {
+            if (lowerCasePassword.contains(forbiddenWords)) {
+                throw new IllegalArgumentException(FORBIDDEN_MESSAGE);
+            }
+        }
+
         if (!hasUpCase) {
             throw new IllegalArgumentException(UPPERCASE_ERROR_MESSAGE);
         }
