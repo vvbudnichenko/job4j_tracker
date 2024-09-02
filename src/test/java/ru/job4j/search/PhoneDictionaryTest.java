@@ -37,7 +37,7 @@ public class PhoneDictionaryTest {
                 new Person("Petr", "Petrov", "65422778", "Grodno")
         );
         ArrayList<Person> persons = phones.find("Petr");
-        assertThat(persons.get(0).getSurname()).isNotEqualTo("Petrov");
+        assertThat(persons.get(1).getSurname()).isEqualTo("Petrov");
         assertThat(persons.get(0).getSurname()).isEqualTo("Arsentev");
     }
 }
