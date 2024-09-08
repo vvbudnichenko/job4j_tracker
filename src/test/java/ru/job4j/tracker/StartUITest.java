@@ -8,6 +8,9 @@ import ru.job4j.tracker.output.Output;
 import ru.job4j.tracker.output.StubOutput;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class StartUITest {
@@ -33,11 +36,9 @@ class StartUITest {
         Item item = tracker.add(new Item("Replaced item"));
         String replacedName = "New item name";
         Input input = new MockInput(new String[]{"0", String.valueOf(item.getId()), replacedName, "1"});
-        ArrayList<UserAction> actions = new ArrayList<>();
-        actions.add(new ReplaceAction(output));
-        actions.add(new ExitAction(output));
+        List<UserAction> actions = Arrays.asList(new ReplaceAction(output), new ExitAction(output));
         new StartUI(output).init(input, tracker, actions);
-        assertThat(tracker.findById(0).getName()).isEqualTo(replacedName);
+        assertThat(tracker.findById(item.getId()).getName()).isEqualTo(replacedName);
     }
 
     @Test
@@ -50,6 +51,7 @@ class StartUITest {
         actions.add(new DeleteAction(output));
         actions.add(new ExitAction(output));
         new StartUI(output).init(input, tracker, actions);
+        assertThat(tracker.findById(item.getId())).isNull();
     }
 
     @Test
