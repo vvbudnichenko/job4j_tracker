@@ -27,7 +27,7 @@ public class AppleStore {
 
     public String getFirstUpsetCustomer() {
         int temp = count;
-        Customer result = new Customer(" ", 0);
+        Customer result = null;
         for (Customer counts : queue) {
             temp--;
             if (temp < 0) {
