@@ -2,6 +2,14 @@ package ru.job4j.bank;
 
 import java.util.Objects;
 
+/**
+ * Класс реализует модель данных User для банковского сервиса.
+ * Модель описывает пользователя банка по данным его паспорта и имени.
+ * Паспортные данные используются как уникальный идентификатор.
+ *
+ * @author Vladimir Budnichenko
+ * @version 1.0
+ */
 public class User {
     private String passport;
     private String username;

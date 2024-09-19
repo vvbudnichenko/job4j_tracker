@@ -2,6 +2,14 @@ package ru.job4j.bank;
 
 import java.util.Objects;
 
+/**
+ * Класс реализует модель данных Account для банковского сервиса
+ * Модель данных описывает аккаунт по реквизитам счета и балансу счета.
+ * Реквизиты счета используются как уникальный идентификатор.
+ *
+ * @author Vladimir Budnichenko
+ * @version 1.0
+ */
 public class Account {
     private String requisite;
     private double balance;
