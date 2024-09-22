@@ -21,6 +21,6 @@ public class Departments {
     }
 
     public static void sortDesc(List<String> departments) {
-        departments.sort(new DepDescComp());
+        departments.sort(new DepartmentsDescComparator());
     }
 }
