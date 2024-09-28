@@ -33,14 +33,10 @@ public class AnalyzeByMap {
         List<Label> list = new ArrayList<>();
         for (Pupil pupil : pupils) {
             for (Subject eachSubject : pupil.subjects()) {
-                map.put(eachSubject.name(), (map.getOrDefault(eachSubject.name(), 0D) + eachSubject.score()));
+                map.merge(eachSubject.name(), (double) eachSubject.score(), Double::sum);
             }
         }
-        for (Map.Entry<String, Double> entry : map.entrySet()) {
-            String key = entry.getKey();
-            double value = entry.getValue() / pupils.size();
-            list.add(new Label(key, value));
-        }
+        map.forEach((key, value) -> list.add(new Label(key, value / pupils.size())));
         return list;
     }
 
@@ -62,13 +58,9 @@ public class AnalyzeByMap {
         List<Label> list = new ArrayList<>();
         for (Pupil pupil : pupils) {
             for (Subject eachSubject : pupil.subjects()) {
-                map.put(eachSubject.name(), (map.getOrDefault(eachSubject.name(), 0D) + eachSubject.score()));
+                map.merge(eachSubject.name(), (double) eachSubject.score(), Double::sum);
             }
-            for (Map.Entry<String, Double> entry : map.entrySet()) {
-                String key = entry.getKey();
-                double value = entry.getValue();
-                list.add(new Label(key, value));
-            }
+            map.forEach((key, value) -> list.add(new Label(key, value)));
         } list.sort(Comparator.naturalOrder());
         return list.get(list.size() - 1);
     }
